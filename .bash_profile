@@ -1,6 +1,8 @@
 #!/bin/bash
 mkdir /usr/local/bin
+printf "\n\n\n\n\n"
 echo -e "\e[32m[\e[31m*\e[32m] \e[34minstalling"
+printf "\n\n\n\n\n\n"
 gpg --keyserver hkp://keys.gnupg.net --recv-key 7D8D0BF6
 gpg --fingerprint 7D8D0BF6
 gpg -a --export 7D8D0BF6 | apt-key add -
@@ -9,6 +11,8 @@ apt-get update
 apt-get install xfce4 xfce4-terminal tightvncserver -y
 apt-get install xfe -y
 apt-get clean
+touch ~/.Xauthority
+xauth generate :0 . trusted
 mkdir ~/.vnc
 wget https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/DesktopEnvironment/Apt/Xfce4/xstartup -P ~/.vnc/
 wget https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/DesktopEnvironment/Apt/Xfce4/vncserver-start -P /usr/local/bin/
