@@ -1,4 +1,6 @@
 #!/bin/bash
+folder=kali-fs
+dlink="https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/APT"
 mkdir /usr/local/bin
 printf "\n\n\n\n\n"
 echo -e "\e[32m[\e[31m*\e[32m] \e[34minstalling"
@@ -12,6 +14,8 @@ apt-get install keyboard-configuration -y
 apt-get install sudo wget -y
 apt-get install xfce4 xfce4-terminal tigervnc-standalone-server -y
 apt-get install xfe -y
+apt update -y && apt install wget sudo dbus-x11 -y
+apt install tigervnc-standalone-server -y
 apt-get clean
 
 #Setup the necessary files
@@ -23,7 +27,19 @@ wget https://raw.githubusercontent.com/Techriz/AndronixOrigin/master/APT/XFCE4/v
 chmod +x ~/.vnc/xstartup
 chmod +x /usr/local/bin/vncserver-start
 chmod +x /usr/local/bin/vncserver-stop
-
+if [ ! -f /usr/local/bin/vncserver-start ]; then
+wget --tries=20  $dlink/LXDE/vncserver-start -O /usr/local/bin/vncserver-start
+    wget --tries=20 $dlink/LXDE/vncserver-stop -O /usr/local/bin/vncserver-stop
+    chmod +x /usr/local/bin/vncserver-stop
+    chmod +x /usr/local/bin/vncserver-start
+fi
+if [ ! -f /usr/bin/vncserver ]; then
+    apt install tigervnc-standalone-server -y
+fi
+clear 
+echo 'Installing browser'
+apt install firefox-esr -y
+clear 
 echo " "
 
 echo "Running browser patch"
