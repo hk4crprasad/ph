@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir /usr/local/bin
 echo -e "\e[32m[\e[31m*\e[32m] \e[34minstalling"
 gpg --keyserver hkp://keys.gnupg.net --recv-key 7D8D0BF6
 gpg --fingerprint 7D8D0BF6
